@@ -1,4 +1,9 @@
-#include "webapp.h"
+#include "Webapp.h"
+
+void Webapp::setHandler(handlerFunction handler)
+{
+    this->handler = handler;
+}
 
 void Webapp::loop()
 {

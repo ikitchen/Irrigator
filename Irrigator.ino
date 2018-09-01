@@ -21,7 +21,7 @@
 #include <Ethernet.h>
 
 #include "config.h"
-#include "webapp.h"
+#include "Webapp.h"
 
 
 // Initialize the Ethernet server library
