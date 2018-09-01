@@ -3,7 +3,7 @@
 #define WEBAPP_H
 #include <Ethernet.h>
 
-typedef void (*handlerFunction)(void);
+typedef void (*handlerFunction)(EthernetClient *client, String *method, String *path);
 
 class Webapp
 {

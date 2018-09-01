@@ -1,4 +1,7 @@
 #include "Webapp.h"
+//TODO: implement these limitations:
+#define MAXLEN_METHOD 8
+#define MAXLEN_PATH 64
 
 void Webapp::setHandler(handlerFunction handler)
 {
@@ -11,39 +14,52 @@ void Webapp::loop()
     EthernetClient client = this->server->available();
     if (client)
     {
-        Serial.println("new client");
+        // Serial.println("new client");
         // an http request ends with a blank line
         bool currentLineIsBlank = true;
+
+        String method;
+        bool readingMethod = true;
+        String path;
+        bool readingPath = false;
+
         while (client.connected())
         {
             if (client.available())
             {
                 char c = client.read();
-                Serial.write(c);
+
+                if (readingMethod)
+                {
+                    if (c == ' ')
+                    {
+                        readingMethod = false;
+                        readingPath = true;
+                    }
+                    else
+                    {
+                        method += c;
+                    }
+                }
+                else if (readingPath)
+                {
+                    if (c == ' ')
+                    {
+                        readingPath = false;
+                    }
+                    else
+                    {
+                        path += c;
+                    }
+                }
+
+                // Serial.write(c);
                 // if you've gotten to the end of the line (received a newline
                 // character) and the line is blank, the http request has ended,
                 // so you can send a reply
                 if (c == '\n' && currentLineIsBlank)
                 {
-                    // send a standard http response header
-                    client.println("HTTP/1.1 200 OK");
-                    client.println("Content-Type: text/html");
-                    client.println("Connection: close"); // the connection will be closed after completion of the response
-                    client.println("Refresh: 5");        // refresh the page automatically every 5 sec
-                    client.println();
-                    client.println("<!DOCTYPE HTML>");
-                    client.println("<html>");
-                    // output the value of each analog input pin
-                    for (int analogChannel = 0; analogChannel < 6; analogChannel++)
-                    {
-                        int sensorReading = analogRead(analogChannel);
-                        client.print("analog input ");
-                        client.print(analogChannel);
-                        client.print(" is ");
-                        client.print(sensorReading);
-                        client.println("<br />");
-                    }
-                    client.println("</html>");
+                    this->handler(&client, &method, &path);
                     break;
                 }
                 if (c == '\n')
@@ -62,7 +78,7 @@ void Webapp::loop()
         delay(1);
         // close the connection:
         client.stop();
-        Serial.println("client disconnected");
+        // Serial.println("client disconnected");
     }
 }
 

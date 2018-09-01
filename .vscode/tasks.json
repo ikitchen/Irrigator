@@ -18,6 +18,13 @@
             "type": "shell",
             "command": "arduino --upload ${workspaceFolder}/Irrigator.ino",
             "problemMatcher": "$gcc"
+        },
+        {
+            "label": "Test",
+            "type": "shell",
+            "command": "curl http://192.168.88.177",
+            "problemMatcher": "$gcc",
+            "dependsOn": ["Upload"]
         }
     ]
 }
