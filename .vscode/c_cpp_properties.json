@@ -1,0 +1,44 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/mk/Apps/arduino-1.8.6/hardware/arduino/avr/cores/arduino/",
+                "/home/mk/Apps/arduino-1.8.6/hardware/arduino/avr/libraries/EEPROM/",
+                "/home/mk/Apps/arduino-1.8.6/hardware/arduino/avr/libraries/HID/",
+                "/home/mk/Apps/arduino-1.8.6/hardware/arduino/avr/libraries/SPI/",
+                "/home/mk/Apps/arduino-1.8.6/hardware/arduino/avr/libraries/SoftwareSerial/",
+                "/home/mk/Apps/arduino-1.8.6/hardware/arduino/avr/libraries/Wire/",
+                "/home/mk/Apps/arduino-1.8.6/hardware/tools/avr/avr/include/",
+                "/home/mk/Apps/arduino-1.8.6/hardware/tools/avr/avr/include/avr/",
+                "/home/mk/Apps/arduino-1.8.6/hardware/tools/avr/avr/include/compat/",
+                "/home/mk/Apps/arduino-1.8.6/hardware/tools/avr/avr/include/util/",
+                "/home/mk/Apps/arduino-1.8.6/hardware/tools/avr/lib/gcc/avr/4.*.*/include/",
+                "/home/mk/Apps/arduino-1.8.6/hardware/tools/avr/lib/gcc/avr/4.*.*/include-fixed/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/Bridge/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/Esplora/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/Ethernet/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/Firmata/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/GSM/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/LiquidCrystal/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/Robot_Control/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/RobotIRremote/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/Robot_Motor/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/SD/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/Servo/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/SpacebrewYun/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/Stepper/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/Temboo/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/TFT/src/",
+                "/home/mk/Apps/arduino-1.8.6/libraries/WiFi/src/"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
