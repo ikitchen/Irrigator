@@ -3,9 +3,26 @@
 #define MAXLEN_METHOD 8
 #define MAXLEN_PATH 64
 
-void Webapp::setHandler(handlerFunction handler)
+Webapp::Webapp(EthernetServer *server)
 {
-    this->handler = handler;
+    this->server = server;
+}
+
+HttpMethod Webapp::httpMethodFromString(String methodStr)
+{
+    if (methodStr == "GET")
+    {
+        return GET;
+    }
+    if (methodStr == "POST")
+    {
+        return POST;
+    }
+    if (methodStr == "OPTIONS")
+    {
+        return OPTIONS;
+    }
+    return UNKNOWN;
 }
 
 void Webapp::loop()
@@ -59,7 +76,8 @@ void Webapp::loop()
                 // so you can send a reply
                 if (c == '\n' && currentLineIsBlank)
                 {
-                    this->handler(&client, &method, &path);
+                    HttpMethod httpMethod = httpMethodFromString(method);
+                    handler(&client, httpMethod, &path);
                     break;
                 }
                 if (c == '\n')
@@ -80,9 +98,4 @@ void Webapp::loop()
         client.stop();
         // Serial.println("client disconnected");
     }
-}
-
-Webapp::Webapp(EthernetServer *server)
-{
-    this->server = server;
 }

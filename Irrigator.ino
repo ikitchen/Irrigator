@@ -21,38 +21,15 @@
 #include <Ethernet.h>
 
 #include "config.h"
-#include "Webapp.h"
+#include "ControlWebapp.h"
 
 // Initialize the Ethernet server library
 // with the IP address and port you want to use
 // (port 80 is default for HTTP):
 EthernetServer server(80);
-Webapp app(&server);
+ControlWebapp app(&server);
 
-void onHttpRequest(EthernetClient *client, String *method, String *path)
-{
-  // send a standard http response header
-  client->println("HTTP/1.1 200 OK");
-  client->println("Content-Type: text/html");
-  client->println("Connection: close"); // the connection will be closed after completion of the response
-  client->println();
-  // output the value of each analog input pin
-  for (int analogChannel = 0; analogChannel < 6; analogChannel++)
-  {
-    int sensorReading = analogRead(analogChannel);
-    client->print("AI ");
-    client->print(analogChannel);
-    client->print(" = ");
-    client->print(sensorReading);
-    client->println("<br />");
-  }
-  client->print("HTTP method = ");
-  client->println(*method);
-  client->println("<br />");
-  client->print("Path = ");
-  client->println(*path);
-  client->println("<br />");
-}
+
 
 void setup()
 {
@@ -86,7 +63,6 @@ void setup()
   server.begin();
   Serial.print("server is at ");
   Serial.println(Ethernet.localIP());
-  app.setHandler(onHttpRequest);
 }
 
 void loop()
