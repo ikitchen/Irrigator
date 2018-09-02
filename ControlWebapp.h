@@ -4,11 +4,11 @@
 
 class ControlWebapp : public Webapp
 {
-  public:
-    ControlWebapp(EthernetServer *server) : Webapp(server) {}
+public:
+  ControlWebapp(EthernetServer *server) : Webapp(server) {}
 
-  protected:
-    void handler(EthernetClient *client, HttpMethod method, String *path);
+protected:
+  void handler(HttpMethod method, String *path);
 };
 
 #endif

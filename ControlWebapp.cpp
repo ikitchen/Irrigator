@@ -1,6 +1,6 @@
 #include "ControlWebapp.h"
 
-void ControlWebapp::handler(EthernetClient *client, HttpMethod method, String *path)
+void ControlWebapp::handler(HttpMethod method, String *path)
 {
     // send a standard http response header
     client->println("HTTP/1.1 200 OK");

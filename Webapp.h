@@ -16,10 +16,11 @@ private:
   EthernetServer *server;
 
 protected:
-  virtual void handler(EthernetClient *client, HttpMethod method, String *path);
+  virtual void handler(HttpMethod method, String *path);
   HttpMethod httpMethodFromString(String methodStr);
 
 public:
+  EthernetClient *client;
   Webapp(EthernetServer *server);
   void loop();
 };

@@ -77,7 +77,8 @@ void Webapp::loop()
                 if (c == '\n' && currentLineIsBlank)
                 {
                     HttpMethod httpMethod = httpMethodFromString(method);
-                    handler(&client, httpMethod, &path);
+                    this->client = &client;
+                    handler(httpMethod, &path);
                     break;
                 }
                 if (c == '\n')
