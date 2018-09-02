@@ -9,4 +9,4 @@ router.get('/', mainService);
 
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(7777);
+app.listen(process.env.PORT || 7777);
