@@ -4,9 +4,15 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Install",
+            "type": "shell",
+            "command": "arduino --install-library ArduinoHttpClient:0.3.1",
+            "problemMatcher": "$gcc"
+        },
+        {
             "label": "Verify",
             "type": "shell",
-            "command": "arduino --verify ${workspaceFolder}/Irrigator.ino",
+            "command": "arduino --verify ${workspaceFolder}/Main.ino",
             "problemMatcher": "$gcc",
             "group": {
                 "kind": "build",
@@ -16,23 +22,7 @@
         {
             "label": "Upload",
             "type": "shell",
-            "command": "arduino --upload ${workspaceFolder}/Irrigator.ino",
-            "problemMatcher": "$gcc"
-        },
-        {
-            "label": "Verify_TEST",
-            "type": "shell",
-            "command": "arduino --verify ${workspaceFolder}/Test.ino",
-            "problemMatcher": "$gcc",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "Upload_TEST",
-            "type": "shell",
-            "command": "arduino --upload ${workspaceFolder}/Test.ino",
+            "command": "arduino --upload ${workspaceFolder}/Main.ino",
             "problemMatcher": "$gcc"
         },
         {
