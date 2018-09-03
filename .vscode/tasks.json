@@ -20,6 +20,22 @@
             "problemMatcher": "$gcc"
         },
         {
+            "label": "Verify_TEST",
+            "type": "shell",
+            "command": "arduino --verify ${workspaceFolder}/Test.ino",
+            "problemMatcher": "$gcc",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Upload_TEST",
+            "type": "shell",
+            "command": "arduino --upload ${workspaceFolder}/Test.ino",
+            "problemMatcher": "$gcc"
+        },
+        {
             "label": "Test",
             "type": "shell",
             "command": "curl http://192.168.88.177/",

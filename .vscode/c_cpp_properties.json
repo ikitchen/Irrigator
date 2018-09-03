@@ -31,7 +31,8 @@
                 "/home/mk/Apps/arduino-1.8.6/libraries/Stepper/src/",
                 "/home/mk/Apps/arduino-1.8.6/libraries/Temboo/src/",
                 "/home/mk/Apps/arduino-1.8.6/libraries/TFT/src/",
-                "/home/mk/Apps/arduino-1.8.6/libraries/WiFi/src/"
+                "/home/mk/Apps/arduino-1.8.6/libraries/WiFi/src/",
+                "../libraries/ArduinoHttpClient/src/"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

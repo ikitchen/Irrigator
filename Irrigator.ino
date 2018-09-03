@@ -22,14 +22,17 @@
 
 #include "config.h"
 #include "ControlWebapp.h"
+#include "ApiClient.h"
+#include <ArduinoHttpClient.h>
 
 // Initialize the Ethernet server library
 // with the IP address and port you want to use
 // (port 80 is default for HTTP):
 EthernetServer server(80);
-ControlWebapp app(&server);
-
-
+EthernetClient client;
+HttpClient http = HttpClient(client, config_serverHost, 80);
+ApiClient api(&http);
+ControlWebapp app(&server, &api);
 
 void setup()
 {
