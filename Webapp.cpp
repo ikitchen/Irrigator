@@ -1,24 +1,33 @@
 #include "Webapp.h"
 //TODO: implement these limitations:
-#define MAXLEN_METHOD 8
-#define MAXLEN_PATH 64
+#define MAXLEN_METHOD 1
+#define MAXLEN_PATH 8
 
 Webapp::Webapp(EthernetServer *server)
 {
     this->server = server;
 }
 
+void Webapp::sendHeader()
+{
+    // send a standard http response header
+    client->println("HTTP/1.1 200 OK");
+    client->println("Content-Type: text/html");
+    client->println("Connection: close"); // the connection will be closed after completion of the response
+    client->println();
+}
+
 HttpMethod Webapp::httpMethodFromString(String methodStr)
 {
-    if (methodStr == "GET")
+    if (methodStr == "G")
     {
         return GET;
     }
-    if (methodStr == "POST")
+    if (methodStr == "P") //yes, i am aware of PUT/PATCH etc, but i want to use less RAM
     {
         return POST;
     }
-    if (methodStr == "OPTIONS")
+    if (methodStr == "O")
     {
         return OPTIONS;
     }
@@ -55,7 +64,10 @@ void Webapp::loop()
                     }
                     else
                     {
-                        method += c;
+                        if (method.length() < MAXLEN_METHOD)
+                        {
+                            method += c;
+                        }
                     }
                 }
                 else if (readingPath)
@@ -66,7 +78,10 @@ void Webapp::loop()
                     }
                     else
                     {
-                        path += c;
+                        if (path.length() < MAXLEN_PATH)
+                        {
+                            path += c;
+                        }
                     }
                 }
 

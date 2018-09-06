@@ -1,5 +1,18 @@
-#include "ApiClient.h"
+#include <Time.h>
+#include <TimeLib.h>
 #include <SPI.h>
+
+#include "ApiClient.h"
+
+struct SyncData
+{
+    time_t time;
+    bool isRaining;
+};
+
+SyncData parseSyncData(String serverResponse) {
+
+}
 
 ApiClient::ApiClient(HttpClient *http)
 {

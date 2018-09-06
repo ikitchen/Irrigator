@@ -18,6 +18,7 @@ private:
 protected:
   virtual void handler(HttpMethod method, String *path);
   HttpMethod httpMethodFromString(String methodStr);
+  void sendHeader();
 
 public:
   EthernetClient *client;

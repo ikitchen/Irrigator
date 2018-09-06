@@ -1,10 +1,12 @@
 #include <SPI.h>
 #include <Ethernet.h>
+#include <ArduinoHttpClient.h>
+#include <Time.h>
+#include <TimeLib.h>
 
 #include "config.h"
 #include "ControlWebapp.h"
 #include "ApiClient.h"
-#include <ArduinoHttpClient.h>
 
 // Initialize the Ethernet server library
 // with the IP address and port you want to use
@@ -14,6 +16,7 @@ EthernetClient client;
 HttpClient http = HttpClient(client, config_serverHost, 80);
 ApiClient api(&http);
 ControlWebapp app(&server, &api);
+time_t requestSync();
 
 void setup()
 {
@@ -24,7 +27,6 @@ void setup()
   {
     ; // wait for serial port to connect. Needed for native USB port only
   }
-  Serial.println("Ethernet WebServer Example");
 
   // start the Ethernet connection and the server:
   Ethernet.begin(config_mac, config_ip);
@@ -32,7 +34,7 @@ void setup()
   // Check for Ethernet hardware present
   if (Ethernet.hardwareStatus() == EthernetNoHardware)
   {
-    Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
+    Serial.println("EETH");
     while (true)
     {
       delay(1); // do nothing, no point running without Ethernet hardware
@@ -40,16 +42,22 @@ void setup()
   }
   if (Ethernet.linkStatus() == LinkOFF)
   {
-    Serial.println("Ethernet cable is not connected.");
+    Serial.println("ECAB");
   }
 
   // start the server
   server.begin();
-  Serial.print("server is at ");
   Serial.println(Ethernet.localIP());
+  setSyncProvider(requestSync);
+  setSyncInterval(10);
 }
 
 void loop()
 {
   app.loop();
+}
+
+time_t requestSync()
+{
+  return 1536036522;
 }
