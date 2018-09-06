@@ -9,7 +9,7 @@ const mainService = async (ctx, next) => {
     const isRainy =
         isItemRainy(forecastsList[0]) || isItemRainy(forecastsList[1]);
     const curentTime = Date.now();
-    ctx.body = `r${isRainy ? 1 : 0}t${curentTime}`;
+    ctx.body = `${isRainy ? 1 : 0}:${curentTime}`;
 };
 
 module.exports = mainService;
