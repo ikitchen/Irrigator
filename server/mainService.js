@@ -1,23 +1,15 @@
 const { getForecast } = require('./weatherClient');
+const { encode: mpEncode } = require('msgpack5')();
 
 const FLAG_RAINY = 0x01;
 
 const encode = ({ isRainy, currentTime }) => {
-    const buff = new ArrayBuffer(
-        Uint8Array.BYTES_PER_ELEMENT + Uint32Array.BYTES_PER_ELEMENT
-    );
-
-    const view = new DataView(buff);
-
-    const flags = 0;
+    let flags = 0;
     if (isRainy) {
         flags |= FLAG_RAINY;
     }
 
-    view.setUint8(0, flags);
-    view.setUint32(1, currentTime);
-
-    return new Buffer(buff);
+    return mpEncode([flags, currentTime]);
 };
 
 const isItemRainy = singleForecast =>
