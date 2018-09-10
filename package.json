@@ -1,20 +1,22 @@
 {
-    "name": "ikitchen-irrigator-server",
-    "version": "0.0.1",
-    "description": "API gateway and assets storage for irrigator device",
-    "main": "web.js",
-    "scripts": {
-        "dev": "nodemon ./server/web",
-        "start": "node ./server/web.js"
-    },
-    "author": "corporateanon",
-    "license": "WTFPL",
-    "dependencies": {
-        "axios": "^0.18.0",
-        "g": "^2.0.1",
-        "koa": "^2.5.2",
-        "koa-router": "^7.4.0",
-        "msgpack5": "^4.2.0",
-        "nodemon": "^1.18.4"
-    }
+  "name": "ikitchen-irrigator-server",
+  "version": "0.0.1",
+  "description": "API gateway and assets storage for irrigator device",
+  "main": "web.js",
+  "scripts": {
+    "dev": "nodemon ./server/web",
+    "start": "node ./server/web.js",
+    "test": "jest"
+  },
+  "author": "corporateanon",
+  "license": "WTFPL",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "g": "^2.0.1",
+    "jest": "^23.6.0",
+    "koa": "^2.5.2",
+    "koa-router": "^7.4.0",
+    "msgpack5": "^4.2.0",
+    "nodemon": "^1.18.4"
+  }
 }
