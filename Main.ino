@@ -47,7 +47,9 @@ void setup()
 
   // start the server
   server.begin();
+#ifdef LOGGING
   Serial.println(Ethernet.localIP());
+#endif
   setSyncProvider(requestSync);
   setSyncInterval(10);
 }
@@ -55,9 +57,25 @@ void setup()
 void loop()
 {
   app.loop();
+  static unsigned long t;
+  unsigned long n = millis();
+  if (n - t >= 1000)
+  {
+    Serial.print(now());
+    t = n;
+  }
 }
 
 time_t requestSync()
 {
-  return 1536036522;
+  SyncData syncData;
+  if (api.getData(&syncData))
+  {
+    Serial.println("SYNCED");
+    Serial.println(syncData.time);
+    Serial.println(syncData.flags);
+    return syncData.time;
+  }
+  Serial.println("ERROR");
+  return 0; // TODO: zero on fail?
 }

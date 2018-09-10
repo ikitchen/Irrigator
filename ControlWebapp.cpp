@@ -13,6 +13,6 @@ void ControlWebapp::handler(HttpMethod method, String *path)
 
     sendHeader();
 
-    String res = api->getData();
-    client->println(res);
+    SyncData sync;
+    api->getData(&sync);
 }
