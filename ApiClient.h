@@ -6,12 +6,7 @@
 #include <TimeLib.h>
 #include <SPI.h>
 #include "msgpck.h"
-
-struct SyncData
-{
-  byte flags;
-  time_t time;
-};
+#include "SyncData.h"
 
 class ApiClient
 {
