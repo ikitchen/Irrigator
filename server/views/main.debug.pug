@@ -1,0 +1,11 @@
+doctype html
+html
+  head
+    title Debug page
+  body
+    h3 Response
+    pre= JSON.stringify(response, false, 2)
+    h3 Binary response
+    pre= binaryResponse.toString('hex')
+    h3 Forecast
+    pre= JSON.stringify(forecast, false, 2)

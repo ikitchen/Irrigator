@@ -15,14 +15,23 @@ const encode = ({ isRainy, currentTime }) => {
 const isItemRainy = singleForecast =>
     singleForecast.weather.some(weather => weather.main === 'Rain');
 
-const mainService = async (ctx, next) => {
+const mainService = ({ debug } = {}) => async (ctx, next) => {
     const forecast = await getForecast('kharkiv');
     const forecastsList = forecast.list;
     const isRainy =
         isItemRainy(forecastsList[0]) || isItemRainy(forecastsList[1]);
     const currentTime = Math.round(Date.now() / 1000);
-
-    ctx.body = encode({ currentTime, isRainy });
+    const response = { currentTime, isRainy };
+    const binaryResponse = encode(response);
+    if (debug) {
+        await ctx.render('main.debug', {
+            forecast,
+            response,
+            binaryResponse
+        });
+    } else {
+        ctx.body = binaryResponse;
+    }
 };
 
 module.exports = mainService;
