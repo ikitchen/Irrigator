@@ -23,6 +23,11 @@ const mainService = ({ debug } = {}) => async (ctx, next) => {
     const currentTime = Math.round(Date.now() / 1000);
     const response = { currentTime, isRainy };
     const binaryResponse = encode(response);
+    console.log(
+        `Response: ${JSON.stringify(response)} (${binaryResponse.toString(
+            'hex'
+        )})`
+    );
     if (debug) {
         await ctx.render('main.debug', {
             forecast,
